@@ -1,10 +1,16 @@
-let money; 
-let income; 
-let addExpenses; 
-let deposit; 
-let mission; 
-const period = 2;
+let money = 100000, 
+income = '60000', 
+addExpenses = '600, 3000, 5000',
+deposit = true,
+mission = 1000000, 
+period = 10;
 
-alert("Hello, World!");
+console.log(typeof money);
+console.log(typeof income);
+console.log(typeof deposit);
+console.log('Период равен ' + period + ' месяцев');
+console.log('Цель заработать ' + mission + ' рублей');
+console.log(addExpenses.toLowerCase().split(', '));
 
-console.log("Hello, World!");
+let budgetDay = parseFloat(income) / 30;
+console.log(budgetDay);
