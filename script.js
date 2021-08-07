@@ -20,6 +20,8 @@ let appData = {
   expenses: {},
   addExpenses: [],
   deposit: false,
+  percentDeposit: 0,
+  moneyDeposit: 0,
   mission: 1000000,
   period: 12,
   budget: money,
@@ -28,12 +30,27 @@ let appData = {
   expensesMonth: 0,
 
   asking: function() {
+
+      if (confirm('Есть ли у вас дополнительный источник заработка?')) {
+        let itemIncome, cashIncome;
+        do {
+          itemIncome = prompt('Какой у вас есть дополнительный заработок?', 'Такси');
+        } while (isNumber(itemIncome));
+        do {
+          cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', 10000);
+        } while (!isNumber(cashIncome));
+        appData.income[itemIncome] = cashIncome;
+      }
+
       appData.addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
-      appData.addExpenses.toLowerCase().split(', ');
+      appData.addExpenses = appData.addExpenses.toLowerCase().split(', ');
       appData.deposit = confirm("Есть ли у вас депозит в банке?");
 
       for (let i = 0; i < 2; i++) {
-        let key = prompt("Введите обязательную статью расходов?");
+        let key;
+        do {
+          key = prompt("Введите обязательную статью расходов?");
+        } while (isNumber(key));
         appData.expenses[key] = 0;
         let expense;
         do {
@@ -69,6 +86,21 @@ let appData = {
       return "Что-то пошло не так";
     }
   },
+
+  getInfoDeposit: function() {
+    if (appData.deposit) {
+      do {
+        appData.percentDeposit = prompt('Какой годовой процент?', 10);
+      } while (!isNumber(appData.percentDeposit));
+      do {
+        appData.moneyDeposit = prompt('Какая сумма заложена?', 10000);
+      } while (!isNumber(appData.moneyDeposit));
+    }
+  },
+
+  calcSavedMoney: function() {
+    return appData.budgetMonth * appData.period;
+  }
 };
 
 appData.asking();
@@ -91,3 +123,9 @@ console.log('Наша программа включает в себя данны
 for (let key in appData) {
   console.log(key + ': ' + appData[key]);
 }
+
+for (let i = 0; i < appData.addExpenses.length; i++) {
+  let firstLetter = appData.addExpenses[i].substr(0, 1);
+  appData.addExpenses[i] = firstLetter.toUpperCase() + appData.addExpenses[i].substr(1);
+}
+console.log(appData.addExpenses.join(', '));
