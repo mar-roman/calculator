@@ -16,9 +16,9 @@ const incomePeriodValue = document.getElementsByClassName('income_period-value')
 const targetMonthValue = document.getElementsByClassName('target_month-value')[0];
 
 const salaryAmount = document.querySelector('.salary-amount');
-const incomeTitle = document.querySelector('.income-title');
+const incomeTitle = document.querySelectorAll('.income-title')[1];
 const incomeAmount = document.querySelector('.income-amount');
-const expensesTitle = document.querySelector('.expenses-title');
+const expensesTitle = document.querySelectorAll('.expenses-title')[1];
 const expensesAmount = document.querySelector('.expenses-amount');
 let expensesItems = document.querySelectorAll('.expenses-items');
 const additionalExpensesItem = document.querySelector('.additional_expenses-item');
@@ -200,6 +200,20 @@ let appData = {
     additionalIncomeValue.value = '';
     targetMonthValue.value = '';
     incomePeriodValue.value = '';
+    this.income = {};
+    this.addIncome = [];
+    this.expenses = {};
+    this.addExpenses = [];
+    this.incomeMonth = 0;
+    this.deposit = false;
+    this.percentDeposit = 0;
+    this.moneyDeposit = 0;
+    this.mission = 1000000;
+    this.period = 12;
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.expensesMonth = 0;
   }
 };
 
