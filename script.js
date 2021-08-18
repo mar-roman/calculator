@@ -16,10 +16,10 @@ const incomePeriodValue = document.getElementsByClassName('income_period-value')
 const targetMonthValue = document.getElementsByClassName('target_month-value')[0];
 
 const salaryAmount = document.querySelector('.salary-amount');
-const incomeTitle = document.querySelectorAll('.income-title')[1];
-const incomeAmount = document.querySelector('.income-amount');
-const expensesTitle = document.querySelectorAll('.expenses-title')[1];
-const expensesAmount = document.querySelector('.expenses-amount');
+let incomeTitle = document.querySelectorAll('.income-title');
+let incomeAmount = document.querySelectorAll('.income-amount');
+let expensesTitle = document.querySelectorAll('.expenses-title');
+let expensesAmount = document.querySelectorAll('.expenses-amount');
 let expensesItems = document.querySelectorAll('.expenses-items');
 const additionalExpensesItem = document.querySelector('.additional_expenses-item');
 const depositAmount = document.querySelector('.deposit-amount');
@@ -173,18 +173,26 @@ let appData = {
   reset: function(){
     salaryAmount.removeAttribute('disabled', '');
     salaryAmount.value = '';
-    incomeTitle.removeAttribute('disabled', '');
-    incomeTitle.value = '';
-    incomeAmount.removeAttribute('disabled', '');
-    incomeAmount.value = '';
+    incomeTitle.forEach(function(item){
+      item.removeAttribute('disabled', '');
+      item.value = '';
+    });
+    incomeAmount.forEach(function(item){
+      item.removeAttribute('disabled', '');
+      item.value = '';
+    });
+    expensesTitle.forEach(function(item){
+      item.removeAttribute('disabled', '');
+      item.value = '';
+    });
+    expensesAmount.forEach(function(item){
+      item.removeAttribute('disabled', '');
+      item.value = '';
+    });
     additionalIncomeItem[0].removeAttribute('disabled', '');
     additionalIncomeItem[0].value = '';
     additionalIncomeItem[1].removeAttribute('disabled', '');
     additionalIncomeItem[1].value = '';
-    expensesTitle.removeAttribute('disabled', '');
-    expensesTitle.value = '';
-    expensesAmount.removeAttribute('disabled', '');
-    expensesAmount.value = '';
     additionalExpensesItem.removeAttribute('disabled', '');
     additionalExpensesItem.value = '';
     targetAmount.removeAttribute('disabled', '');
@@ -220,14 +228,25 @@ let appData = {
 start.addEventListener('click', function() {
   if (+salaryAmount.value !== 0) {
     appData.start();
-
+    incomeTitle = document.querySelectorAll('.income-title');
+    expensesTitle = document.querySelectorAll('.expenses-title');
+    incomeAmount = document.querySelectorAll('.income-amount');
+    expensesAmount = document.querySelectorAll('.expenses-amount');
+    incomeTitle.forEach(function(item){
+      item.setAttribute('disabled', '');
+    });
+    incomeAmount.forEach(function(item){
+      item.setAttribute('disabled', '');
+    });
+    expensesTitle.forEach(function(item){
+      item.setAttribute('disabled', '');
+    });
+    expensesAmount.forEach(function(item){
+      item.setAttribute('disabled', '');
+    });
     salaryAmount.setAttribute('disabled', '');
-    incomeTitle.setAttribute('disabled', '');
-    incomeAmount.setAttribute('disabled', '');
     additionalIncomeItem[0].setAttribute('disabled', '');
     additionalIncomeItem[1].setAttribute('disabled', '');
-    expensesTitle.setAttribute('disabled', '');
-    expensesAmount.setAttribute('disabled', '');
     additionalExpensesItem.setAttribute('disabled', '');
     targetAmount.setAttribute('disabled', '');
     depositAmount.setAttribute('disabled', '');
