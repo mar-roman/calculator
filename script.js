@@ -105,7 +105,7 @@ class AppData {
       if(depositPercent.value !== ''){
         if(!isNumber(depositPercent.value) || depositPercent.value < 1 || depositPercent.value > 100){
           alert('Введите корректное значение в поле проценты');
-          depositPercent.value = 'Z0';
+          depositPercent.value = '0';
         }
       }
     });
