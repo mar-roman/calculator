@@ -120,6 +120,7 @@ class AppData {
     } else {
       depositBank.style.display = 'none';
       depositAmount.style.display = 'none';
+      depositPercent.style.display = 'none';
       depositBank.value = '';
       depositAmount.value = '';
       this.deposit = false;
@@ -283,6 +284,7 @@ class AppData {
     incomePeriodValue.value = '';
     depositPercent.value = '';
     depositPercent.style.display = 'none';
+    depositPercent.removeAttribute('disabled', '');
     depositBank.value = '';
     this.income = {};
     this.addIncome = [];
